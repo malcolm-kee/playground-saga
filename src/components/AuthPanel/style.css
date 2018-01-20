@@ -1,0 +1,40 @@
+#authPanel {
+  margin: 20px;
+  border: 1px solid #bbb;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px #444;
+}
+
+.authForm {
+  padding: 10px;
+}
+
+.authInputGroup {
+  padding-top: 12px;
+  padding-bottom: 5px;
+  position: relative;
+}
+
+.authInput {
+  font-size: 1.2rem;
+}
+
+.authInput:valid ~ label,
+.authInput:focus ~ label {
+  font-size: 0.8rem;
+  top: 0px;
+}
+
+.authInput ~ label {
+  color: #444;
+  position: absolute;
+  pointer-events: none;
+  left: 2px;
+  top: 16px;
+  transition: 0.2s ease all;
+}
+
+.authButton {
+  font-size: 1rem;
+}

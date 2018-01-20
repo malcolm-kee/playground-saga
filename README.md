@@ -2,7 +2,11 @@
 
 This project aims to provide a playground to learn redux-saga.
 
-## Setup
+## AuthPanel
+
+This panel consists of a saga that implements an authorization process in which the access token need to be refreshed frequently using the refresh token.
+
+## Background
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
