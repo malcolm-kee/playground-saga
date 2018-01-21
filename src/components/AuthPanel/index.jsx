@@ -33,6 +33,7 @@ class AuthPanelContainer extends React.Component {
     return (
       <AuthPanel
         authStatus={this.props.authStatus}
+        authError={this.props.authError}
         username={this.state.username}
         password={this.state.password}
         onInputChange={this.handleInputChange}
@@ -44,7 +45,8 @@ class AuthPanelContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  authStatus: state.auth.status
+  authStatus: state.auth.status,
+  authError: state.auth.error
 });
 
 const mapDispatchToProps = dispatch => ({

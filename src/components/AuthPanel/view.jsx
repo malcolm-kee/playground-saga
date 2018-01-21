@@ -6,6 +6,7 @@ import { AuthStatus } from "../../constants";
 
 const AuthPanel = ({
   authStatus,
+  authError,
   username,
   password,
   onInputChange,
@@ -16,6 +17,7 @@ const AuthPanel = ({
     <h1 className="panel-header">AuthPanel</h1>
     <div className="panel-info">
       <p>Auth Status: {authStatus}</p>
+      <p>Auth Error: {authError}</p>
     </div>
     {authStatus === AuthStatus.ANONYMOUS && (
       <form className="authForm">
