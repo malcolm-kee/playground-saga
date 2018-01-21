@@ -4,7 +4,7 @@ function generateToken(length) {
   let text = "";
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789=_|!@#";
 
-  for (let numChar = 0; numChar < length; numChar++) {
+  for (let numChar = 0; numChar < length; numChar += 1) {
     text += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
   }
 
@@ -29,7 +29,8 @@ function login(credentials) {
           resolve(token);
         } else {
           console.error("Respond mock login request error");
-          reject({ message: "Duplicate token generated." });
+          const error = new Error("Duplicate token generated.");
+          reject(error);
         }
       }, 1000);
     } catch (e) {
@@ -39,20 +40,21 @@ function login(credentials) {
   });
 }
 
-function refreshToken(refreshToken) {
+function refreshToken(token) {
   return new Promise((resolve, reject) => {
     try {
-      console.log("Making mock refreshToken request with token:", refreshToken);
+      console.log("Making mock refreshToken request with token:", token);
       setTimeout(() => {
-        if (tokenStore[refreshToken]) {
+        if (tokenStore[token]) {
           const newAccessToken = generateToken(8);
-          const newToken = { ...tokenStore[refreshToken], accessToken: newAccessToken };
-          Object.assign(tokenStore, { [newToken.refreshToken]: newToken });
+          const newToken = { ...tokenStore[token], accessToken: newAccessToken };
+          Object.assign(tokenStore, { [newToken.token]: newToken });
           console.log("Respond successful mock refreshToken request with token:", newToken);
           resolve(newToken);
         } else {
-          console.error();
-          reject({ message: "Invalid refresh token." });
+          const error = new Error("Invalid refresh token.");
+          console.error(error);
+          reject(error);
         }
       }, 1000);
     } catch (e) {
@@ -64,16 +66,19 @@ function refreshToken(refreshToken) {
 export function authService(credentialsOrToken) {
   if (typeof credentialsOrToken === "string") {
     return refreshToken(credentialsOrToken);
-  } else {
-    return login(credentialsOrToken);
   }
+  return login(credentialsOrToken);
 }
 
-export function deauthService() {
+export function deauthService(failIt) {
   return new Promise((resolve, reject) => {
     console.log("Deleting token");
     setTimeout(() => {
-      resolve();
+      if (failIt) {
+        reject();
+      } else {
+        resolve();
+      }
     }, 1000);
   });
 }

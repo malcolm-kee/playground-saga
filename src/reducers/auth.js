@@ -4,32 +4,32 @@ const DEFAULT_STATE = {
   status: AuthStatus.ANONYMOUS
 };
 
-const attemptLogin = (state, action) => ({
+const attemptLogin = state => ({
   ...state,
   status: AuthStatus.AWAITING_AUTH_RESPONSE
 });
 
-const loginSuccess = (state, action) => ({
+const loginSuccess = state => ({
   ...state,
   status: AuthStatus.LOGGED_IN
 });
 
-const loginFail = (state, action) => ({
+const loginFail = state => ({
   ...state,
   status: AuthStatus.ANONYMOUS
 });
 
-const attemptLogout = (state, action) => ({
+const attemptLogout = state => ({
   ...state,
   status: AuthStatus.AWAITING_AUTH_RESPONSE
 });
 
-const logoutSuccess = (state, action) => ({
+const logoutSuccess = state => ({
   ...state,
   status: AuthStatus.ANONYMOUS
 });
 
-const logoutFail = (state, action) => ({
+const logoutFail = state => ({
   ...state,
   status: AuthStatus.LOGGED_IN
 });

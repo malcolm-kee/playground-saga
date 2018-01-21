@@ -1,7 +1,7 @@
-import "./App.css";
-
-import React, { Component } from "react";
+import React from "react";
 import { Provider } from "react-redux";
+
+import "./App.css";
 
 import configureStore from "./config/configureStore";
 
@@ -9,16 +9,12 @@ import AuthPanel from "./components/AuthPanel";
 
 const store = configureStore();
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <div className="App">
-          <AuthPanel />
-        </div>
-      </Provider>
-    );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <div className="App">
+      <AuthPanel />
+    </div>
+  </Provider>
+);
 
 export default App;
